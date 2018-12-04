@@ -1,0 +1,327 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.6 laurocesar
+%% Copyright 2012-2016 by abnTeX2 group at http://www.abntex.net.br/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro CÃ©sar Araujo. Further information are available on 
+%% http://www.abntex.net.br/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+% Link for source code:
+% https://github.com/abntex/abntex2/blob/master/doc/latex/abntex2/examples/abntex2-modelo-trabalho-academico.tex
+
+% abntex2cite reference:
+% http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite.pdf
+% http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite-alf.pdf
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capÃ­tulos comeÃ§am em pÃ¡g Ã­mpar (insere pÃ¡gina vazia caso preciso)
+	a4paper,			% tamanho do papel. 
+	oneside,
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% tÃ­tulos de capÃ­tulos convertidos em letras maiÃºsculas
+	%section=TITLE,		% tÃ­tulos de seÃ§Ãµes convertidos em letras maiÃºsculas
+	%subsection=TITLE,	% tÃ­tulos de subseÃ§Ãµes convertidos em letras maiÃºsculas
+	%subsubsection=TITLE,% tÃ­tulos de subsubseÃ§Ãµes convertidos em letras maiÃºsculas
+	% -- opções do pacote babel --
+    %brazil		        % idioma adicional para hifenização
+	%french,		    % idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	english,		    % o Ãºltimo idioma Ã© o principal do documento
+	hyphens
+]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		
+\usepackage{lastpage}			% Usado pela Ficha catalogrÃ¡fica
+\usepackage{indentfirst}		% Indenta o primeiro parÃ¡grafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% InclusÃ£o de grÃ¡ficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{mathptmx}
+\usepackage{xspace}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[ruled,vlined]{algorithm2e}
+%\usepackage[style=abnt]{biblatex}
+
+% Pacotes de citações
+\usepackage[english,hyperpageref]{backref}	 % Paginas com as citaÃ§Ãµes na bibl
+\usepackage[alf]{abntex2cite}	% CitaÃ§Ãµes padrÃ£o ABNT
+%\addbibresource{reference.bib}
+% ---
+
+\renewcommand{\arraystretch}{1.3}
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% ConfiguraÃ§Ãµes do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Cited in page(s):~}
+\renewcommand{\backref}{}
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		No citation in text.%
+	\or
+		Cited in page #2.%
+	\else
+		Cited #1 times in pages #2.%
+	\fi}%
+
+% ---
+% \newcommand{\ava}{ambiente virtual de aprendizagem\xspace}
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Representation of the Computer Vision of Autonomous Vehicles using Computer Graphics}
+\autor{\large Felipe Marinho Tavares\\ João Guilherme de Souza Alves Costa}
+\local{Itabira}
+\data{2018}
+\orientador{Giovani Bernardes Vitor}
+\instituicao{%
+  Universidade Federal de Itajubá -- UNIFEI
+  \par
+  Computer Engineering
+  \par
+  Itabira Campus}
+\tipotrabalho{Undergraduate Thesis}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a Ã¡rea de concentração 
+\preambulo{Undergraduate Thesis presented to the Universidade Federal de Itajubá - Itabira Campus as a requirement for the conclusion of the Computer Engineering undergraduate degree under the guidance of Dr. Giovani Bernardes Vitor.}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title},
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,        	% color of links to bibliography
+    	filecolor=magenta,      	% color of file links
+		urlcolor=black,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo ao dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+\selectlanguage{english}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÃ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá¡ a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+%\include{fichacatalografica}
+
+% ---
+
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+\include{evaluationpaper}
+
+% ---
+
+% ---
+% DedicatÃ³ria
+% ---
+
+%\include{dedicatory}
+
+% ---
+
+% ---
+% Agradecimentos
+% ---
+
+%\include{agradecimentos}
+
+% ---
+
+
+% ---
+% RESUMOS
+% ---
+
+\include{resumo}
+% ---
+
+% ---
+% inserir lista de ilustraÃ§Ãµes
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+
+%\include{siglas}
+
+% ---
+
+% ---
+% inserir lista de sÃ­mbolos
+% ---
+
+%\include{simbolos}
+
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução (exemplo de capÃ­tulo sem numeração, mas presente no SumÃ¡rio)
+% ----------------------------------------------------------
+
+\include{introduction}
+
+% ----------------------------------------------------------
+% Referencial Teórico
+% ----------------------------------------------------------
+\include{literature_review}
+
+% ----------------------------------------------------------
+% Projeto Desenvolvido
+% ----------------------------------------------------------
+\include{development}
+
+% ----------------------------------------------------------
+% Resultados Obtidos
+% ----------------------------------------------------------
+\include{final_considerations}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaÃ§o de parte no SumÃ¡rio
+% ----------------------------------------------------------
+\phantompart
+
+% ----------------------------------------------------------
+% ELEMENTOS PÃS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliographystyle{abntexalfenglish}
+\bibliography{reference}
+
+%\printbibliography
+
+%\input{appendix}
+
+\end{document}
