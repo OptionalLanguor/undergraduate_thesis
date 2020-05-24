@@ -6,14 +6,17 @@
 
 %\section{Conclusion}\label{conclusao}
 
-It's possible to affirm that an end-to-end version of the proposed system was properly elaborated \& developed, and that the set goals of the research were achieved. However, better results for the visualization were expected when considering that only one semantic class had to exist to enable feature extraction. Thus, limiting the number of test scenarios and variety in the 3D environment representation.
+A solid version of the proposal was properly elaborated \& developed, and the set goals of this work were achieved. The proposed implementation is capable of receiving stereo camera images and a semantic image to provide in a display a 3D environment with information of the autonomous vehicle sensors and algorithm interpretations. The approach on the characterization of objects in a scene was sufficient to provide input for the 3D environment, and the rendering software implemented with a Data-Oriented Design displays a 3D representation of the autonomous vehicle sensors and autonomous-driving algorithms understanding of a scene. Also, implementation separation in Cloud Analysis and 3D Environment Representation facilitates the individual improvement or substitution of one of them as long as inputs and outputs continue the same. 
 
-For better performance of the first system, a more elaborate method that could be explored in future work would be to consider clustering entities with the same semantic image information. Thus, still making use of the advantageous semantic information offered by the autonomous-driving algorithm for its decision making, and now considering more than one entity with the same semantic class in a scene. A second point of improvement would be to explore approaches to reduce point cloud noise by using more elaborate depth estimation methods.
+However, the limited capability of the used feature extractor to compute information for only one entity of each type in a scene is an important point for improvement and would lead for more variety of test scenarios for representations and also would enable the quantitative metric of bounding box objects in a scene. 
 
-To enhance the second system results, future work could involve conducting tests on real embedded systems for autonomous-driving while profiling the software performance, and optimizing it when needed. A parallel approach could involve the building of a display prototype to receive real users feedback and evaluation. 
+Considering a better performance of the first system, a more elaborate method that could be explored in future work would be to consider clustering entities with the same semantic image information. Thus, still making use of the advantageous semantic information offered by the autonomous-driving algorithm for its decision making, and now considering more than one entity with the same semantic class in a scene. A second point of improvement would be to explore approaches to reduce point cloud noise by using more elaborate depth estimation methods.
 
-Finally, an approach on surveillance and monitoring could be explored and evaluated. Possibly considering the use o sensors from more than one vehicle connected by network, and also exploring the possibility of map update following the graphical display procedure achieved in this research.
+To enhance the second system results, future work could involve conducting tests on real embedded systems for autonomous-driving while profiling the software performance, and optimizing it when needed. A parallel approach could involve constructing a display prototype to receive real users feedback and evaluation data. 
 
+Finally, as future research, an approach on surveillance and monitoring could be explored and evaluated. Possibly considering the use of sensors from more than one vehicle connected by network, and also exploring the possibility of map update following the graphical display procedure achieved in this research.
+
+The presented work is a direct contribution to the UNIFEI's Robotics, Intelligent and Complex Systems (RobSIC) Lab \cite{robsic-video-giovani} as a platform with intent of being continuously improved upon.
 
 %\section{Future Work}\label{trabalhos_futuros}
 

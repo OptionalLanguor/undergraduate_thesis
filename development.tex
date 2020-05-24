@@ -2,9 +2,9 @@
 
 \chapter{Development}\label{development}
 
-    The project consists of the development of two isolated systems which interacts with each other. The first system called Cloud Analysis has as input images of a stereo camera and its associated semantic image and as output information of center of mass and objects size in the image - street, house, car, tree, sky, sidewalk and unidentified empty spaces. It was decided to consider only the case scenario with one object of each category of the semantic image in the scene, because it is still not possible to distinguish between two objects of the same category. 
+    The project consists of the development of two isolated systems which interacts with each other. The first system called Cloud Analysis has as input images captured by a stereo camera and its associated semantic image and as output information of center of mass and objects size in the image - street, house, car, tree, sky, sidewalk and unidentified empty spaces. It was decided to consider only the case scenario using a single object of each category of the semantic image in the scene, because it is still not possible to distinguish between two objects of the same category. To make this distinction, it is necessary to apply more complex studies such as cluster and machine learning, which are not in the scope of the project.
 
-    The second system receives as input the values of the center of mass and size obtained by the first system and then generates a 3D environment of its own with all objects captured by the stereo camera. It uses the Entity Component System approach for its architecture and its implementation is in the C++ language using OpenGL graphics framework.
+    The second system receives the values of the center of mass and size obtained by the first system and then generates a 3D environment of its own with all objects captured by the stereo camera. It uses the Entity Component System approach for its architecture and its implementation is in the C++ language using OpenGL graphics framework.
     
     A representation of the whole system is shown in \autoref{fig:flow-system}, representing both point cloud analysis and 3D environment creation.
     
@@ -43,7 +43,7 @@
         \legend{Source: Authors of this study.}
     \end{figure}
     
-    With camera calibration data, it is possible to define the positioning of each of the cameras and to align two images so that the already explained pixel assimilation is possible. The \autoref{Teste1-2results} and \autoref{teste3-4result} show the results obtained in four different scenario tests.
+    It is possible to define using camera calibration data the positioning of each of the cameras and to align two images so that the already explained pixel assimilation is possible. \autoref{Teste1-2results} and \autoref{teste3-4result} show the results obtained in four different scenario tests.
 
 \begin{figure}[H]
   \centering
@@ -126,7 +126,9 @@
         \legend{Source: Authors of this study.}
     \end{figure}
     
-    The Algorithm \autoref{pointCloudAlgo} contains the brief about the whole system developed to create a point cloud. As the Algorithm shows, the result is written in a \textit{xyz} file with 3D points position. In addition to this output, the disparity image was saved so that it could be analyzed.
+    The Algorithm \autoref{pointCloudAlgo} contains the brief about the whole system developed to create a point cloud. As the Algorithm shows, the result is written in a \textit{xyz} file with 3D points position. XYZ File is a file that contains only the following information in each line: the x, y and z position in coordinates and the RGB color that is accessed at that 3D point. 
+    
+    In addition to this output, the disparity image was saved so that it could be analyzed.
     
     Using this algorithm, tests were performed using images obtained from Giovani's dataset \cite{giovaniThesis} shown in \autoref{Teste1-2results} and \autoref{teste3-4result} including photos from the right and left camera, and semantic image.
 
@@ -170,7 +172,7 @@
     
     The following steps occurred from the following algorithm: Reading the whole Point Cloud xyz file generated in Algorithm \autoref{pointCloudAlgo}; Reading the semantic image and record the respective RGB (Red, Green and Blue) values to each pixel of the image; Gathering the two values into a single file that contains the following attributes in each row: x, y, and z position of the pixel, its grayscale value and its RGB values.
 
-    There is a program called Cloud Compare that reads \textit{xyz} files and shows the point cloud with color and interact with them. Using this program we were able to display the results shown in \autoref{testeColoredCloud}.
+    Cloud Compare is a software that reads \textit{xyz} files and shows the point cloud with color and interact with them. We were able to display the results shown in \autoref{testeColoredCloud} using this software.
 
     In \autoref{testeColoredCloud}, each image represents the result of a test, first picture represents first test and the numeration goes top-down. The first test proved to be the most efficient of all which showed a wealth of detail in both near and camera and distant images. The second and fourth tests were also close to reality, especially near the camera.
 
@@ -261,7 +263,7 @@ First and second tests performed with only one car on the scene}
     \legend{Source: Authors of this study.}
 \end{figure}
     
-    In the last image you can see that the center of mass of the car is also being printed - visually close to what would really be the center of it. On the other hand, the size limits described as small yellow squares around the center of mass were not very efficient. All points are assuming values below the actual size of the vehicle.
+    In the last image it is possible to see that the center of mass of the car is also being printed - visually close to what would really be the center of it. On the other hand, the size limits described as small yellow squares around the center of mass were not very efficient. All points are assuming values below the actual size of the vehicle.
 
     It is also noted in the second column that, although the sign disrupts the complete view of the car, the center of mass values remained faithful.
     
@@ -279,11 +281,11 @@ First and second tests performed with only one car on the scene}
       \label{testeColoredCloud}
     \end{figure} 
     
-    It can see that the bounding box is still not perfect. Before it was too small and now, it is bigger than the real. Despite this, both results proved adequate to create a representation of the car's bounding box.It was defined to used the variance.
+    The bounding box is still not perfect in \autoref{varianceRes}. Initially the box was very small and now with the use of the new approach, it was bigger than the real one. Despite this, both results proved adequate to create a representation of the car's bounding box.It was defined to used the variance.
     
     Another test was performed considering situations where there is only one street. The function of this test is to validate the center of mass calculation of other categories besides vehicles. The street will have a different treatment in the 3D environment, however, the output of Cloud Analysis will be similar to vehicles. As shown in \autoref{Teste2Center}, the street's center of mass is located at a visually expected point, marked orange in the images.
     
-    The results obtained from the center of mass (both in \autoref{Teste1Center} and in \autoref{Teste2Center}) are defined in a range of values different from the 3D environment. The functions and calculations performed for the Point Cloud generation return as a result values approximately between 5 and - 5 floating values - which is far from representing a metric close to the metric of reality.
+    The results obtained using the center of mass (both in \autoref{Teste1Center} and in \autoref{Teste2Center}) are defined in a range of values different from the 3D environment. The functions and calculations performed for the Point Cloud generation return as a result values approximately between 5 and - 5 floating values - which is far from representing a metric close to the metric of reality.
     
     \begin{figure}[H]
   \centering
@@ -392,7 +394,7 @@ First and second tests performed with only one street on the scene}
     
     In the following steps of calculating the disparity map it is possible to highlight some reasons for the difficulties already reported, such as low-contrast image regions. This problem impacted the results shown in order to create holes in the disparity map generating a noise that propagated to the end of the flow and hampered the faithful acquisition of the features.
     
-    Another factor that contributed to the difficulty in generating a plausible graphical environment was the fact that the Point Cloud is generated by small coordinates. These values were between 5 and -5, with six decimal places in each coordinate. These low numbers contributed to the propagation of the error, since any small rounding in the center of mass calculation or in the bounding box will already result in very disparate values when passed to the 3D environment.
+    Another factor that brought difficulties in generating a plausible graphical environment was the fact that the Point Cloud is generated by small coordinates. These values were between 5 and -5, with six decimal places in each coordinate. These low numbers contributed to the propagation of the error, since any small rounding in the center of mass calculation or in the bounding box will already result in very disparate values when passed to the 3D environment.
 
 \section{3D environment}
     

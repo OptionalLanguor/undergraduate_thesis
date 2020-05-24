@@ -9,7 +9,7 @@
 
 \section{State of the Art}
 
-    In this section similar works are cited with the goal of contextualizing our proposal, expressing relations and differences to approaches currently found in the industry and academic research. 
+    In this section, we provide a literature addressing similar works that propose 3D estimations. This section contextualizes our proposal in a way that differences and relations to our approach are highlighted.
 
 \subsection{Zoox: Simulation for Autonomous Driving}
 
@@ -55,11 +55,11 @@ Zoox simulation environment with route estimation}
      \legend{Source: Adapted from \cite{zoox-fully-autonomous-driving}.}
     \end{figure}
     
-    The current work relates to Zoox as both has as goal to provide visualization of autonomous vehicles algorithms. However, the cited startup considers more sensors (Velodyne, LiDAR) than our proposal (two stereo cameras) while also not necessarily focusing on performance for constrained systems.
+    The current work relates to Zoox as both has as goal to provide visualization of autonomous vehicles algorithms. However, Zoox in \cite{zoox-unreal-siggraph-2017} considers more sensors (Velodyne, LiDAR) in comparison to our proposal (two stereo cameras) while also not necessarily focusing on performance for constrained systems.
 
 \subsection{Image Segmentation and Depth}
 
-    One of the major problems in the 3D environment reconstruction and computational vision is to develop a system capable of accurately discriminating each of the elements present in the environment.
+    One of the major problems in the 3D environment reconstruction and computational vision is to develop a procedure capable of accurately discriminating each of the elements present in the environment.
     
     For the semantic association problem, \cite{semantic_article} proposes the use of deep convolutional networks in contrast to volumetric approaches operating directly on surface geometry. Crucially, the construction is applicable to unstructured point clouds and other noisy real-world data. The results can be seen in \autoref{fig:semantic-tangent-cnn}.
 
@@ -72,9 +72,9 @@ Top: point cloud from the Semantic3D dataset. Bottom: semantic segmentation prod
      \legend{Source: Adapted from \cite{semantic_article}.}
     \end{figure}
     
-    The current work relates to \cite{semantic_article} by having point clouds as input. However, while \cite{semantic_article} associate semantic meaning to data, our work have as input semantic images obtained by the current autonomous-driving algorithm in the environment.
+    The current work relates to \cite{semantic_article} by having point clouds as input. However, while \cite{semantic_article} associate semantic meaning to data, our work receive as input semantic images obtained by the current autonomous-driving algorithm in the environment.
     
-    Aside from a semantic approach, to accurately discriminate elements in a scene for a virtual representation, it's important to estimate the distance and position of elements. \cite{toyota-depth} is an example of work that tries to improve the state of art on depth estimation (results shown in \autoref{fig:depth-superdepth}).
+    Aside from a semantic approach, in order to accurately discriminate elements in a scene for a virtual representation, it's important to estimate the distance and position of elements. \cite{toyota-depth} is an example of work that tries to improve the state of art on depth estimation (results shown in \autoref{fig:depth-superdepth}).
 
     \begin{figure}[H]
      \caption{\label{fig:depth-superdepth}Trained Monocular
@@ -87,11 +87,11 @@ the need for ground truth depth labels}
      \legend{Source: \cite{toyota-depth}}
     \end{figure}
 
-    The current work doesn't focus on the creation of a new depth estimation method, as this topic deserves a research of its own. However, on the proposed system depth calculation is part of the pipeline, and a method for it will be explored on the development section.
+    The current work doesn't focus on the creation of a new depth estimation method, as this topic deserves a research of its own. However, on proposed system depth calculation is part of the pipeline, and a method for it is addressed in the development section.
 
 \subsection{CARLA: An Open Urban Driving Simulation}
 
-    According to CARLA's Website \cite{carla-official-website}, it's a simulator developed from the ground up to support development, training, and validation of autonomous urban driving systems. A open-source project that provides open digital assets (urban layouts, buildings, vehicles) that were created for this purpose and can be used freely. It is a complex simulator platform that supports flexible specification of sensor suites and environmental conditions (such as in \autoref{fig:carla_urban_environment}). In this platform it's possible to test a several kind of system that needs a urban environment. In addition, the system can generate performance reports.
+    According to CARLA's Website \cite{carla-official-website}, it's a simulator developed from the ground up to support development, training, and validation of autonomous urban driving systems. An open-source project that provides open digital assets (urban layouts, buildings, vehicles) that were created for this purpose and can be used freely. It is a complex simulator platform that supports flexible specification of sensor suites and environmental conditions (such as in \autoref{fig:carla_urban_environment}). In this platform it's possible to test a several types of algorithms in urban environments. In addition, the system is able to generate performance reports.
     
     \begin{figure}[H]
      \caption{\label{fig:carla_urban_environment}
@@ -115,9 +115,9 @@ Three of the sensing modalities provided by CARLA. From left to right: normal vi
      \legend{Source: Adapted from \cite{Dosovitskiy17}.}
     \end{figure} 
 
-    The sensors are be able to segmented 12 semantic classes: road, lane-marking, traffic sign, sidewalk, fence, pole, wall, building, vegetation, vehicle, pedestrian, and other. Therefore, CARLA manages not only to create a realist urban environment, but also to provide tools that allow the complete analysis of the environment around the car.
+    The sensors are able to segment 12 semantic classes: road, lane-marking, traffic sign, sidewalk, fence, pole, wall, building, vegetation, vehicle, pedestrian, and other. Therefore, CARLA manages not only to create a realist urban environment, but also to provide tools that enables the complete analysis of the environment surrounding the car.
     
-    The current work relates to CARLA as both proposes software with the use of computer graphics to assist the field of autonomous driving. However, CARLA's provides a virtual environment to test autonomous driving algorithms and compare them, while this research is focused in representing an approximation of the environment surrounding a real autonomous car and considering constraints of the real-world (as intrinsic sensor noise and computational limitation).
+    The current work relates to CARLA as both propose applications that use techniques from graphical computing to assist in autonomous driving. However, CARLA's provides a virtual environment to test autonomous driving algorithms and compare them, while this research focuses on representing an approximation of the environment surrounding a real autonomous car and considering constraints of the real-world (as intrinsic sensor noise and computational limitation).
 
 \section{Point Cloud Generation}
 
@@ -168,7 +168,7 @@ Projection Line}
      \legend{Source: Adapted from \cite{geometriaEpipolarLeonardo}.}
     \end{figure}
 
-    It can be noted by looking at the image that any object located above the projection line (represented by \(X^{'}\), \(X^{''}\) and \(X^{'''}\)) will be superimposed (or hidden). The disparity matrix serves precisely to understand, from images, the depth of this projection line. And for this, a second camera is used, as shown in \autoref{fig:epipolar01}.
+    It can be noted by looking at the image that any object located above the projection line (represented by \(X^{'}\), \(X^{''}\) and \(X^{'''}\)) is superimposed (or hidden). The disparity matrix serves precisely to understand the depth of this projection line. In this matter, a second camera is used, as shown in \autoref{fig:epipolar01}.
 
     \begin{figure}[H]
      \caption{\label{fig:epipolar01}
@@ -190,7 +190,7 @@ Matching Points}
      \legend{Source: \cite{geometriaEpipolarLeonardo}.}
     \end{figure}
     
-    By treating the two images, eliminating their distortions and rectifying one against the other, it is possible to obtain something called the "Baseline" \cite{geometriaEpipolarLeonardo}, shown in \autoref{fig:epipolar03}.
+    By processing the two images, eliminating their distortions and rectifying one against the other, it is possible to obtain something called the "Baseline" \cite{geometriaEpipolarLeonardo}, shown in \autoref{fig:epipolar03}.
 
     \begin{figure}[H]
      \caption{\label{fig:epipolar03}
@@ -201,9 +201,9 @@ Baseline}
      \legend{Source: \cite{geometriaEpipolarLeonardo}.}
     \end{figure}
     
-    In his thesis \cite{geometriaEpipolarLeonardo} explain that with this configuration it's possible to define a \(\pi\) plane.
+    \cite{geometriaEpipolarLeonardo} explains that it's possible to define a \(\pi\) plane using this configuration.
     
-    The point \(e_{1}\), called the epipolo, is a projection of the optical center of the camera 2 (\(O_{2}\)) in the plane of the image of the camera 1. The epipolo \(e_{2}\) is found in the same way. The line is formed by points \(O_{1}\) and \(O_{2}\), where it connects the optical centers of the cameras is called the baseline. Its intersection with the planes of the images form epipolar lines. 
+    The point \(e_{1}\), called the epipolo, is a projection of the optical center of the camera 2 (\(O_{2}\)) in the plane of the image of the camera 1. The epipolo \(e_{2}\) is found in the same logic. The line is formed by points \(O_{1}\) and \(O_{2}\), where it connects the optical centers of the cameras is called the baseline. Its intersection with the planes of the images form epipolar lines. 
     
 \subsection{Disparity and Sum of Squared Difference}
 
@@ -237,11 +237,11 @@ SSD Calculation}
      \legend{Source: \cite{SSD_teste}.}
     \end{figure}
     
-    The analysis is faithfully represented by \autoref{fig:epipolar04}, it is possible to observe how each step is performed: First, it defines which pixel should be analyzed in the first image; Next, the pixel row of the second image is defined as the first; Then, the SSD is calculated in the first pixel and its horizontal component varies in order to perform the same subtraction throughout the line; Lastly, it will have a vector of values that will represent which close each pixel of that line is in relation to the the first image pixel. The one with the lowest value will be the pixel most likely to match.
+    The analysis is faithfully represented by \autoref{fig:epipolar04}, it is possible to observe how each step is performed: First, it defines which pixel should be analyzed in the first image; Next, the pixel row of the second image is defined as the first; Then, the SSD is calculated using the first pixel and its horizontal component varies in order to perform the same subtraction throughout the line; At last, it has a vector of values that represents how close each pixel of that line is in relation to the the first image pixel. The nearest pixel value is the pixel most likely to match.
     
 \subsection{Point Cloud}
 
-    Point Cloud is a 3D reconstruction of a stereo photo, generated from a disparity map. The function used to do this on the OpenCV framework is called reprojectImageTo3D() and has an important output: A matrix containing x, y and z values with an intensity value in gray scale that shows the distance of each pixel (point) - The closer the camera is to the point, darker is the pixel.
+    Point Cloud is a 3D reconstruction and can be generated by a stereo photo and a disparity map. The function used to do this on the OpenCV framework is called reprojectImageTo3D() and has an important output: A matrix containing x, y and z values with an intensity value in gray scale that shows the distance of each pixel (point) - The closer the camera is to the point, darker is the pixel.
     
     The reprojectImage3D function is an OpenCV feature used to become transparent the calculations and concepts used in the 3D scenario reconstruction. A calculation that uses as epipolar geometry principle and works two important concepts: disparity and depth. Using this geometry, the 3D problem become a 2D problem and thus, it's possible discuss about the disparity and depth concepts. \autoref{fig:epipolar05} evidence how these concepts are joined together for the reconstruction of a 3D scenario.
 
@@ -267,9 +267,9 @@ Disparity and Depth}
 
     Thus, it's possible to discover how deep is each pixel and print them in a 3D scenario. This scenario is called a point cloud.
 
-    There are many applications with a point cloud in a 3D environment. It is usually used in conjunction with an algorithm to treat the surface of these points and reconstruct an approximate image from those points with graphic details. Thus, it's possible to reconstruct the real environment by a 3D environment with details. In the other hand, the point cloud can be used to acquire some useful data without a biggest graphic details, such as: size of different objects in scene, the center of mass, object directions and others.
+    There are many applications with a point cloud in a 3D environment. It is usually used in conjunction with an algorithm to treat the surface of these points and reconstruct an approximate image from those points with graphic details. Thus, it's possible to reconstruct the real environment by a 3D environment with details. On the other hand, the point cloud can be used to acquire some useful data without a biggest graphic details, such as: size of different objects in scene, the center of mass, object directions and others.
 
-    The \autoref{fig:point_cloud_ex} shows the point cloud and the possible applications with it. 
+    \autoref{fig:point_cloud_ex} shows the point cloud and its possible applications. 
     
     \begin{figure}[H]
      \caption{\label{fig:point_cloud_ex}
@@ -280,15 +280,15 @@ Point cloud examples}
      \legend{Source: \cite{pointCloud_ex}.}
     \end{figure}
 
-In the first image, it can be noticed the pure point cloud – a 3D representation of a Alien with points. Alexandre, in his article \cite{pointCloud_ex}, used a reflection conception to describe the image graphically. In the other hand, it’s possible to discover information such as center of mass and substitute the point cloud to an alien's art.
+On the first image, it can be noticed the pure point cloud – a 3D representation of a Alien with points. Alexandre, in his article \cite{pointCloud_ex}, used a reflection conception to describe the image graphically. On the other hand, it’s possible to compute information such as center of mass and substitute the point cloud to an alien's art.
 
 \subsection{Semantic Context}
 
-    A real image is made up of several objects and elements different from each other. In an urban environment, an image can contain pedestrians, cars, streets, animals, houses, poles and other elements that a human can easily differentiate. However, for an algorithm it is a complex task.
+    A real image is made up of several objects and elements different from each other. In an urban environment, an image can capture pedestrians, cars, streets, animals, houses, poles and other elements that a human can easily differentiate. However, in an algorithmic perspective, it is a complex task.
 
-    In his thesis, Giovani \cite{giovaniThesis} describes a code capable of performing this objects differentiation in an urban image and compares the results obtained with other algorithms used in the literature. With its algorithm, it is able to discriminate road, sidewalk, vehicles, buildings, sky, vegetation and void spaces - spaces without discrimination.
+    \cite{giovaniThesis} describes a code capable of performing this objects differentiation in an urban image and compares the results obtained with other algorithms used in the literature. \cite{giovaniThesis}, it is able to discriminate road, sidewalk, vehicles, buildings, sky, vegetation and void spaces - spaces without discrimination.
 
-    Giovani \cite{giovaniThesis} evidences the result of three approaches developed by him: ProbBoost, HistonBoost and ANN (Such as \autoref{fig:semanticaGi}). To use as a parameter and to train the neural network that will contribute to these approaches, the Ground Truth concept is used - an image that graphically represents the differentiation of the objects in the scene, as shown in \autoref{fig:semantic01}.
+    \cite{giovaniThesis} evidences the result of three approaches developed by him: ProbBoost, HistonBoost and ANN (such as \autoref{fig:semanticaGi}). In order to use as a parameter and to train the neural network that will contribute to these approaches, the Ground Truth concept is used - an image that graphically represents the differentiation of the objects in the scene, as shown in \autoref{fig:semantic01}.
 
     \begin{figure}[H]
      \caption{\label{fig:semanticaGi}
@@ -308,26 +308,26 @@ Semantic Image}
      \legend{Source: \cite{giovaniThesis}.}
     \end{figure}    
     
-    In this project, the images generated in the Giovani's research \cite{giovaniThesis} named as Ground Truth are used as a semantic image. The urban environment images are analyzed with the help of the dataset provided by KITTI. KITTI's dataset is an urban image dataset created by Karlsruhe Institute of Technology (KIT).
+    Our proporsal uses the semantic images provided by \cite{giovaniThesis} named as Ground Truth. The urban environment images are analyzed with the help of the dataset provided by KITTI. KITTI's dataset is an urban image dataset created by Karlsruhe Institute of Technology (KIT).
 
 \subsection{Difficulties}
 
-    \cite{SSD_teste} in his lecture explain that this stereo reconstruction pipeline has some problems. Such as:
+    \cite{SSD_teste} highlights that this stereo reconstruction pipeline has some problems. Such as:
     
     \begin{itemize}
     \item Camera calibration errors;
     \item Poor image resolution;
     \item Occlusions;
-    \item Violations of brightness constancy (specular reflections)
-    \item  Large motions;
-    \item Low-contrast image regions;
+    \item Violations of brightness constancy (specular reflections);
+    \item Large motions;
+    \item Low-contrast image regions.
 \end{itemize}
 
-    All of these points are used for the analysis of results.
+    Any project is subject to errors due to these factors. Therefore, it is important to use them for the analysis of results. All of these points are considered for the analysis of results on the next section.
     
 \section{Feature Extraction}
 
-    This section approaches feature extraction methods for appliance on set of points with the final goal of describing entities on a scene. Since this project consider scene semantic information as input. Thus, there is exploration on methods for recognition of different categories. 
+    This section approaches feature extraction methods for appliance on set of points with the final goal of describing entities in a scene. As this project considers scene semantic information as input. 
     
 \subsection{Center of Mass}
 
@@ -345,7 +345,7 @@ Semantic Image}
     z_{mc} = \frac{1}{M}\sum_{i=1}^{n}m_{i}z_{i}
     \end{equation}
     
-    Where \(m\) is the weight of the particle and \(M\) is the total weight of all particles together. In the case of a picture, all points have the same weight (value \(1\)) and \(M\) is equal to the total number of particles. Thus, this equation can be simplified to:
+    Where \(m\) is the weight of the particle, \(M\) is the total weight of all particles together and \(x\), \(y\) and \(z\) are the components of the Cartesian plane of each 3D position. In the case of a picture, all points have the same weight (value \(1\)) and \(M\) is equal to the total number of particles. Thus, this equation can be simplified to:
     
     \begin{equation}\label{eq:MassCenterX2}
     x_{mc} = \frac{1}{M}\sum_{i=1}^{n}x_{i} 
@@ -366,12 +366,14 @@ Semantic Image}
 
     The first method calculates the center of mass of an object, refer to it as origin, and for each direction calculates the geometric centroid of points, defining them as direction's limit. Repeating this procedure for all directions creates a box which represents the object's approximate size. This approach is not efficient for the reason that it will always set limits lower than the actual limit of the object. Because it is an average of points, this value will hardly match the maximum point of the object.
 
-    On the other hand, \cite{estatistic-douglas} explain a more suitable way of finding these limits. The variance of a random variable is a measure of dispersion, or scatter, in the possible values for the variable. Thus, it's possible to find an approximate value of dispersion for the center of mass (\(\upsilon\)) using the variance formula in \autoref{eq:variance}.
+    On the other hand, \cite{estatistic-douglas} describe a more appropriate way of finding these limits. The variance of a random variable is a measure of dispersion, or scatter, in the possible values for the variable. Thus, it's possible to find an approximate value of dispersion for the center of mass (\(\upsilon\)) using the variance formula in \autoref{eq:variance}.
 
     \begin{equation}\label{eq:variance}
     \sigma^{2} = \sum_{x}(x-\upsilon)^{2}f(x) 
     \end{equation}
 
+    In addition, \(x\) is the 3D component of the object. 
+    
     It's possible to find an approximate maximum point of different directions, and then create an upper and lower box of the object, when using \autoref{eq:variance}. Finally, the difference between the upper and lower limits is calculated in order to define the width, height and length values.
 
 
@@ -381,11 +383,13 @@ Semantic Image}
     
 \subsection{Software Architectures in the industry}
 
-    When considering reference sources for software architectures (especially for 3D and simulation software) the industry related work, e.g. \cite{leonard-thief-postmortem}, stands out as the content theme doesn't appeal strongly to academic environment due to the evident product focused approach instead of theoretical.
+    While planning the software structure for the development of the 3D environment, a literature survey was conducted aiming to gather information on computer graphics rendering applications. 
+
+    When considering reference sources for software architectures (especially for 3D and simulation software) the industry related work, e.g. \cite{leonard-thief-postmortem}, stands out and seems more interesting as the content theme doesn't appeal strongly to academic environment due to the evident product focused approach instead of theoretical.
     
-    Software architecture design choice has direct impact on the performance, as explored in \cite{albrecht-pitfalls-OOP-GCAP09}. Albrecht presented in GCAP 2009 a performance comparison of different data designs implementations. 
+    One of the points made clear during the survey is that software architecture design choice has direct impact on performance, as explored in \cite{albrecht-pitfalls-OOP-GCAP09}. Demonstrating it, Albrecht presented in GCAP 2009 a performance comparison of different data designs implementations. 
     
-    The test scene tree consists of an object class containing general data (Object), class to render object (Drawable & Cube), class to update geometrical transforms (Modifier), and container class which store access to objects (Node). The standard data for comparison is shown in \autoref{fig:albrecht-simple-oo-scene-tree}. 
+    Albrecht's test scene tree consists of an object class containing general data (Object), class to render object (Drawable & Cube), class to update geometrical transforms (Modifier), and container class which store access to objects (Node). The standard data for comparison is shown in \autoref{fig:albrecht-simple-oo-scene-tree}. 
     
     \begin{figure}[H]
         \caption{
@@ -407,7 +411,7 @@ Semantic Image}
         \item Render method being empty
     \end{itemize}
     
-    The different data organizations approaches iterate on the previous, and consisting of:
+    The different data organizations approaches iterate on the previous scene, and consists of:
     
     \begin{itemize}
         \item Simple Object Oriented following the Scene tree organization
@@ -416,7 +420,7 @@ Semantic Image}
         \item Flat design with prefetching due to predictable data accesses
     \end{itemize}
     
-    Albrecht then presents the final test results for different data designs, shown in \autoref{fig:albrecht-cache-impact}. The most considerable performance gains were obtained by the continuous allocation of data (less encapsulation) and the flattening of hierarchy (less layers of abstraction).  
+    Albrecht then presents the final test results for each different data designs, shown in \autoref{fig:albrecht-cache-impact}. The most considerable performance gains were obtained by the continuous allocation of data (less encapsulation) and the flattening of hierarchy (less layers of abstraction).  
     
     \begin{figure}[H]
         \caption{
@@ -429,7 +433,11 @@ Semantic Image}
         \legend{Source: Adapted from \cite{albrecht-pitfalls-OOP-GCAP09}.}
     \end{figure}
     
-    By the previous shown study its evident that to obtain better performance what have to be explored is the way data is accessed and stored. This design approach is justified by the Processor-Memory Gap explored in the next subsection.
+    While the best approach on \autoref{fig:albrecht-cache-impact} test is the one that considers at the same time cache optimization and the reduction of hierarchies on software architectures, the one that showed definitive gain on rendering was the storage of contiguous data (observed on values for "Node Render"). 
+    
+    Thus, by the previous shown study its evident that to obtain better performance what have to be explored is the way data is accessed and stored. 
+    
+    As this project 3D environment is more concerned with the rendering of data than its transformation, contiguous data storage software designs (also called data-oriented designs) are continuously explored on next sections. However, aiming to justify why this design approach makes sense for its improvement on performance, the phenomenon of the "Processor-Memory Gap" is explored in the next subsection.
 
 \subsection{Processor-Memory Gap}
     
@@ -438,17 +446,19 @@ Semantic Image}
     \begin{figure}[H]
         \caption{
         \label{fig:performance-gap-processor-memory}
-            Single processor performance projections against the historical performance improvement in time to access main memory (Processor line shows the increase in memory requests per second on average. Memory line shows the increase in DRAM accesses per second).
+            Single core processor performance projections against the historical performance improvement in time to access main memory (Processor line shows the increase in memory requests per second on average. Memory line shows the increase in DRAM accesses per second).
         }
         \begin{center}
         \includegraphics[width=1\textwidth]{images/performance-gap-processor-memory.png}
         \end{center}
-        \legend{Source: \cite{computer-architecture-a-quantitative-approach-6ed}.}
+        \legend{Source: Adapted from \cite{computer-architecture-a-quantitative-approach-6ed}.}
     \end{figure}
 
-    As this problem doesn't have an expected hardware solution, it ends up being the software layer job to work with the implied handicap when it appears as an obstacle for an application. In the next subsection we approach Data-Oriented Design, a pattern of software development that is less affect by the Processor-Memory gap problem as the number of memory accesses and cache misses tends to be reduced.
+    As this problem doesn't have an expected hardware solution, it ends up being the software layer job to work with the implied handicap when it appears as an obstacle for an application. In the next subsection we approach Data-Oriented Design, a pattern of software development that is less affected by the Processor-Memory gap problem as the number of memory accesses and cache misses tends to be reduced.
     
 \subsection{Entity Component Systems and Data-Oriented Design}
+
+    A Data-Oriented design making use of a structure called "Entity Component System" is explored and defined in this subsection, consolidating the chosen software architecture approach for the proposed 3D environment.
 
     Entity Component Systems (ECS) is an architectural pattern for software development. There is no concrete definition on its architecture scope, but it does often share Data-Oriented Design (DOD) techniques which focus on designing for performance \cite{llopis-game-engine-gems-2}.
     
@@ -458,7 +468,7 @@ Semantic Image}
 
     DOD main focus can be considered to be cache coherency. In consequence of this pursue the architecture of code generated by it tends to be decoupled and simple in scope, due to not having a world-approximation as Oriented-Programming encourages. 
     
-    As a mean to characterize Data-Oriented Design, \cite{llopis-game-engine-gems-2} consider its benefits and disadvantages. On \autoref{table:dod-benefits} his discourse for each aspect of DOD are listed and simplified.
+    As a mean to characterize Data-Oriented Design, \cite{llopis-game-engine-gems-2} consider general benefits and disadvantages of such approach. In \autoref{table:dod-benefits} aspects of DOD are listed and contextualized.
 
     \begin{table}[H]
     \centering
@@ -499,7 +509,9 @@ Semantic Image}
     \end{tabular}
     \end{table}
     
-    A better grasp on the idea of DOD can be obtained with code examples. Consider the two following implementations in C++ \cite{dice-data-oriented-design}. 
+    It can be concluded from \autoref{table:dod-benefits} that the overall advantage is the performance gain on implementations, and the overall disadvantages are the unusual knowledge of such approach (considering the collaborative work context) and the necessity to shift the emphasis on data thus causing difficulty to see the "big picture" during software development.
+    
+    Both the direct gain in performance and different emphasis on data organization of DOD can be demonstrated with code examples. Consider the two following implementations in C++ \cite{dice-data-oriented-design}. 
     
     \begin{itemize}
         \item \autoref{fig:dice_exampleOOP} uses Object-Oriented Programming and has the idea of creating a class Bot which stores data (attributes) and functionalities (methods);
@@ -533,6 +545,8 @@ Semantic Image}
     Considering previous data knowledge, as it is likely that there is more than one Bot and that "updateAims" will be called more than once, DOD optimizes memory requests by receiving as parameters the necessary input for processing (aligning it in cache) and doing the same operation for each cell of the "Bots" linear array. Thus eliminating cache misses and decoupling the code.
     
     In conclusion, comparing DOP with the well spread Object-Oriented Programming (OOP), DOP implies the requirement of engineers to know their data, and that structure and code refactoring is continuously present during DOP development to eliminate bottlenecks \cite{albrecht-latency-elephant}.
+    
+    The 3D environment proposed in this project thus follows the software architecture approach on Data-Oriented Design with Entity Component Systems.
 
 
 
